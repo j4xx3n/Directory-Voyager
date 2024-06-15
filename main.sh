@@ -20,15 +20,19 @@ echo "
 echo "Domain crawler wrapper"
 echo "By: J4xx3n"
 
-
-# Create variable for target domain
+# Create variable for target domain list
 domain=""
+fuzzOption=false
 
 # Parse command-line options
-while getopts ":d:" opt; do
+while getopts ":d:f:" opt; do
   case ${opt} in
     d )
       domain="$OPTARG"
+      ;;
+    f )
+      #fuzz="$OPTARG"
+      fuzzOption=true
       ;;
     \? )
       echo "Invalid option: $OPTARG" 1>&2
@@ -43,28 +47,40 @@ done
 shift $((OPTIND -1))
 
 
-crawl() {
-    # Use all tools to crawl domain and add to variables
+# Use all tools to crawl domain and add to a file
+crawler() {
+    # Run hakrawler and add output to a file
+    cat domain | hakrawler | tee -a bigCrawl &
 
-    # Run hakrawler and add output to a variable
-    hakrawlerList=$(hakrawler -d $domain)
+    # Run getallurls and add output to a list
+    cat domain | getallurls -threads 8 | tee -a bigCrawl &
 
-    # Run getallurls and add output to a variable
-    gauList=$(getallurls $domain)
+    # Run waybackurls and add output to a list   
+    #waybackList=$(waybackurls $domain)
+    cat domain | waybackurls | tee -a bigCrawl &
 
-    # Run waybackurls and add output to a variable   
-    waybackList=$(waybackurls $domain)
+    # Run katana and add to file
+    katana -list subdomains | tee -a bigCrawl &
+
+    # Wait for all processes to finish
+    wait
 }
 
-combine() {
-    # Add all the subdomain list variables together and remove the duplicates
-    unfilteredCombo="${hakrawlerList} + ${gauList} + ${waybackList}"
-    echo $unfilteredCombo | sort -u | tee comboList.txt
-}
 
+# Fuzz domain list for paths
+fuzzer() {
+  # Check if -f option is provided
+  if [ "$fuzzOption" = true ]
+    # Run ffuf against the list of domains for directories and add to a file
+    #ffuf -c -w "/path/to/wordlist.txt" -maxtime-job 60 -recursion -recursion-depth 5 -u $domain/FUZZ | tee -a bigCrawl
+    echo "Option -f works!"
+  else
+    echo "Skipping fuzzing"
+  fi
+}
 
 main() {
     # Main function to call other functions
-    crawl
-    combine
+    #crawler
+    fuzzer
 }
