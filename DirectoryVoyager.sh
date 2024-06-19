@@ -134,6 +134,9 @@ cleanList() {
 
   # Sort out duplicates and urls not in scope
   cat bigCrawl | grep $baseDomains | sort -u | tee bigCrawl
+
+  echo
+  echo -e "${BLUE}List cleaned${NC}"
 }
 
 # Main function to call other functions
