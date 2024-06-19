@@ -133,7 +133,7 @@ cleanList() {
   baseDomains=$(awk -F'.' '{print $(NF-1)"."$NF}' $subdomains  | sort | uniq)
 
   # Sort out duplicates and urls not in scope
-  cat bigCrawl | grep $baseDomains | sort -u | tee bigCrawl
+  cat bigCrawl | grep -f $baseDomains | sort -u | tee bigCrawl
 
   echo
   echo -e "${BLUE}List cleaned${NC}"
