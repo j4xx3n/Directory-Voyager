@@ -13,19 +13,20 @@ NC='\033[0m' # No Color
 
 showHelp() {
   echo -e "${RED}Directory Voyager${NC}"
-  echo "Wrapper for domain scanners to create one large list."
+  echo -e "${BLUE}Wrapper for domain scanners to create one large list.${NC}"
   echo -e "${RED}By: J4xx3n${NC}"
-  echo "Usage: domain_crawler.sh [-s <domain_file>] [-p] [-a] [-f] [-c]"
   echo
-  echo "Options:"
+  echo -e "${BLUE}Usage: domain_crawler.sh [-s <domain_file>] [-p] [-a] [-f] [-c]${NC}"
+  echo
+  echo -e "${BLUE}Options:${NC}"
   echo "  -s <domain_file>   File containing list of target domains (required)"
   echo "  -p                 Perform passive scans (getallurls, waybackurls, katana)"
   echo "  -a                 Perform active scans (hakrawler, katana)"
-  echo "  -f                 Perform directory fuzzing (currently disabled)"
+  echo "  -f                 Perform directory fuzzing (currently in production)"
   echo "  -c                 Perform cleaning of the list with specific criteria (currently disabled)"
   echo "  -h                 Display this help message"
   echo
-  echo "Examples:"
+  echo -e "${BLUE}Examples:${NC}"
   echo "  ./domain_crawler.sh -s domains.txt -p -a"
   echo "  ./domain_crawler.sh -s domains.txt -f -c 'example.com'"
 }
@@ -73,6 +74,9 @@ shift $((OPTIND -1))
 
 
 passiveScan() {
+  echo -e "${RED}Directory Voyager${NC}"
+  echo -e "${BLUE}Starting passive scan....${NC}"
+  
   # Run getallurls and add output to a list
   cat $subdomains | getallurls | tee -a bigCrawl
 
@@ -85,6 +89,9 @@ passiveScan() {
 
 
 activeScan() {
+  echo -e "${RED}Directory Voyager${NC}"
+  echo -e "${BLUE}Starting active scan....${NC}"
+
   # Run hakrawler and add output to a file
   cat $subdomains | hakrawler -d 5 | tee -a bigCrawl
 
@@ -94,6 +101,9 @@ activeScan() {
 
 
 fuzzScan(){
+  echo -e "${RED}Directory Voyager${NC}"
+  echo -e "${BLUE}Starting passive scan....${NC}"
+
   # Fuzz domain list for paths
   #echo "Please enter domain to fuzz:"
   echo "Fuzz function out of commition."
@@ -107,6 +117,8 @@ fuzzScan(){
 }
 
 cleanList() {
+  echo -e "${RED}Directory Voyager${NC}"
+  echo -e "${BLUE}Cleaning list....${NC}"
   # Sort out duplicates and urls not in scope
   cat bigCrawl | sort -u | tee bigCrawl
 }
