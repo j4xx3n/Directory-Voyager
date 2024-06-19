@@ -7,6 +7,23 @@
 echo "Domain crawler wrapper"
 echo "By: J4xx3n"
 
+showHelp() {
+  echo "Usage: domain_crawler.sh [-s <domain_file>] [-p] [-a] [-f] [-c]"
+  echo "Wrapper for domain scanners to create one large list."
+  echo
+  echo "Options:"
+  echo "  -s <domain_file>   File containing list of target domains (required)"
+  echo "  -p                 Perform passive scans (getallurls, waybackurls, katana)"
+  echo "  -a                 Perform active scans (hakrawler, katana)"
+  echo "  -f                 Perform directory fuzzing (currently disabled)"
+  echo "  -c                 Perform cleaning of the list with specific criteria (currently disabled)"
+  echo "  -h                 Display this help message"
+  echo
+  echo "Examples:"
+  echo "  ./domain_crawler.sh -s domains.txt -p -a"
+  echo "  ./domain_crawler.sh -s domains.txt -f -c 'example.com'"
+}
+
 # Create variable for target domain list
 subdomains=""
 passive=false
@@ -15,7 +32,7 @@ fuzz=false
 clean=false
 
 # Parse command-line options
-while getopts ":s:pafc" opt; do
+while getopts ":s:pafch" opt; do
   case ${opt} in
     s )
       subdomains="$OPTARG"
@@ -31,6 +48,10 @@ while getopts ":s:pafc" opt; do
       ;;
     c )
       clean=true
+      ;;
+    h )
+      showHelp
+      exit 0
       ;;
     \? )
       echo "Invalid option: $OPTARG" 1>&2
