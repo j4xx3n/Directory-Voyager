@@ -13,7 +13,6 @@ passive=false
 active=false
 fuzz=false
 clean=false
-cleanArg=""
 
 # Parse command-line options
 while getopts ":s:pafc" opt; do
@@ -31,7 +30,6 @@ while getopts ":s:pafc" opt; do
       fuzz=true
       ;;
     c )
-      cleanArg="$OPTARG"
       clean=true
       ;;
     \? )
@@ -82,10 +80,8 @@ fuzzScan(){
 }
 
 cleanList() {
-  echo "Clen function is out of commition."
   # Sort out duplicates and urls not in scope
-  #cat bigCrawl | grep $cleanArg | sort -u | tee bigCrawl
-  #echo "$cleanArg"
+  cat bigCrawl | sort -u | tee bigCrawl
 }
 
 # Main function to call other functions
