@@ -15,7 +15,7 @@ showHelp() {
   echo -e "${BLUE}Wrapper for domain scanners to create one large list.${NC}"
   echo -e "${RED}By: J4xx3n${NC}"
   echo
-  echo -e "${BLUE}Usage: domain_crawler.sh [-s <domain_file>] [-p] [-a] [-f] [-c]${NC}"
+  echo -e "${BLUE}Usage: DirectoryVoyager.sh [-s <domain_file>] [-p] [-a] [-f] [-c]${NC}"
   echo
   echo -e "${BLUE}Options:${NC}"
   echo "  -s <domain_file>   File containing list of target domains (required)"
@@ -26,8 +26,8 @@ showHelp() {
   echo "  -h                 Display this help message"
   echo
   echo -e "${BLUE}Examples:${NC}"
-  echo "  ./domain_crawler.sh -s domains.txt -p -a"
-  echo "  ./domain_crawler.sh -s domains.txt -f -c 'example.com'"
+  echo "  ./DirectoryVoyager.sh -s domains.txt -p -a"
+  echo "  ./DirectoryVoyager.sh -s domains.txt -f -c 'example.com'"
 }
 
 # Create variable for target domain list
