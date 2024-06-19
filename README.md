@@ -34,6 +34,7 @@ Options:
   - -f                 Perform directory fuzzing (Currently in progress)"
   - -c                 Perform cleaning of the list"
   - -h                 Display this help message"
+
 Example:
   `./DirectoryVoyager.sh -s example.com -p -a -f -c`
     
