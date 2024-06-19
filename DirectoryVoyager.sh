@@ -22,7 +22,7 @@ showHelp() {
   echo "  -p                 Perform passive scans (getallurls, waybackurls, katana)"
   echo "  -a                 Perform active scans (hakrawler, katana)"
   echo "  -f                 Perform directory fuzzing (Currently in progress)"
-  echo "  -c                 Perform cleaning of the list"
+  echo "  -c                 Perform cleaning of the list (Filter duplicates and out of scope domains)"
   echo "  -h                 Display this help message"
   echo
   echo -e "${BLUE}Examples:${NC}"
