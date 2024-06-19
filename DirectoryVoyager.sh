@@ -15,7 +15,7 @@ showHelp() {
   echo -e "${BLUE}Wrapper for domain scanners to create one large list.${NC}"
   echo -e "${RED}By: J4xx3n${NC}"
   echo
-  echo -e "${BLUE}Usage: DirectoryVoyager.sh [-s <domain_file>] [-p] [-a] [-f] [-c]${NC}"
+  echo -e "${BLUE}Usage: ./DirectoryVoyager.sh [-s <domain_file>] [-p] [-a] [-f] [-c]${NC}"
   echo
   echo -e "${BLUE}Options:${NC}"
   echo "  -s <domain_file>   File containing list of target domains (required)"
