@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory Voyager
-# Wrapper for the most reputable domain scanners to create one large list
+# Wrapper for domain scanners to create one large list
 
 # ANSI color codes
 RED='\033[0;31m'
