@@ -4,12 +4,18 @@
 # Crawlers to use: hakrawler, getallurls, waybackurls
 
 
-echo "Directory Voyager"
-echo "By: J4xx3n"
+# ANSI color codes
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+
 
 showHelp() {
-  echo "Usage: domain_crawler.sh [-s <domain_file>] [-p] [-a] [-f] [-c]"
+  echo -e "${RED}Directory Voyager${NC}"
   echo "Wrapper for domain scanners to create one large list."
+  echo -e "${RED}By: J4xx3n${NC}"
+  echo "Usage: domain_crawler.sh [-s <domain_file>] [-p] [-a] [-f] [-c]"
   echo
   echo "Options:"
   echo "  -s <domain_file>   File containing list of target domains (required)"
