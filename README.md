@@ -32,7 +32,7 @@ Options:
   - -p                 Perform passive scans (getallurls, waybackurls, katana)"
   - -a                 Perform active scans (hakrawler, katana)"
   - -f                 Perform directory fuzzing (Currently in progress)"
-  - -c                 Perform cleaning of the list"
+  - -c                 Perform cleaning of the list (Filter duplicates and out of scope domains)"
   - -h                 Display this help message"
 
 Example:
