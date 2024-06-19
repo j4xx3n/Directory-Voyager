@@ -4,7 +4,7 @@
 # Crawlers to use: hakrawler, getallurls, waybackurls
 
 
-echo "Domain crawler wrapper"
+echo "Directory Voyager"
 echo "By: J4xx3n"
 
 showHelp() {
