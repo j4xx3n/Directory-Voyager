@@ -1,8 +1,7 @@
 #!/bin/bash
 
+# Directory Voyager
 # Wrapper for the most reputable domain scanners to create one large list
-# Crawlers to use: hakrawler, getallurls, waybackurls
-
 
 # ANSI color codes
 RED='\033[0;31m'
