@@ -21,7 +21,7 @@ showHelp() {
   echo "  -s <domain_file>   File containing list of target domains (required)"
   echo "  -p                 Perform passive scans (getallurls, waybackurls, katana)"
   echo "  -a                 Perform active scans (hakrawler, katana)"
-  echo "  -f                 Perform directory fuzzing (currently in production)"
+  echo "  -f                 Perform directory fuzzing (Currently in progress)"
   echo "  -c                 Perform cleaning of the list"
   echo "  -h                 Display this help message"
   echo
@@ -101,11 +101,17 @@ activeScan() {
 
 fuzzScan(){
   echo -e "${RED}Directory Voyager${NC}"
-  echo -e "${BLUE}Starting passive scan....${NC}"
+  echo -e "${BLUE}Currently in progress....${NC}"
 
-  # Fuzz domain list for paths
+
+  # Fuzz subdomains list for directories
+  #cp $subdomains dirFuzz
+  #sed -i 's/$/\/FUZZ/' dirFuzz
+  #cat dirFuzz | while read url ; do ffuf -w common.txt -u "$url" -o dirFuzz.json -s -recursion-depth 2; done
+  #jq -r '.results[].url' dirFuzz.json
+
+  # Fuzz subdomain list for paths
   #echo "Please enter domain to fuzz:"
-  echo "Fuzz function out of commition."
   #read name
   # Create list for fuzzing
   #cat bigCrawl | grep = | grep ? | grep $name | uro | tee keyFuzz
