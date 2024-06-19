@@ -73,6 +73,7 @@ shift $((OPTIND -1))
 
 
 passiveScan() {
+  echo
   echo -e "${RED}Directory Voyager${NC}"
   echo -e "${BLUE}Starting passive scan....${NC}"
   
@@ -88,6 +89,7 @@ passiveScan() {
 
 
 activeScan() {
+  echo
   echo -e "${RED}Directory Voyager${NC}"
   echo -e "${BLUE}Starting active scan....${NC}"
 
@@ -100,6 +102,7 @@ activeScan() {
 
 
 fuzzScan(){
+  echo
   echo -e "${RED}Directory Voyager${NC}"
   echo -e "${BLUE}Currently in progress....${NC}"
 
@@ -122,10 +125,15 @@ fuzzScan(){
 }
 
 cleanList() {
+  echo
   echo -e "${RED}Directory Voyager${NC}"
   echo -e "${BLUE}Cleaning list....${NC}"
+
+  # Create a variable for in-scope domains
+  baseDomains=$(awk -F'.' '{print $(NF-1)"."$NF}' $subdomains  | sort | uniq)
+
   # Sort out duplicates and urls not in scope
-  cat bigCrawl | sort -u | tee bigCrawl
+  cat bigCrawl | grep $baseDomains | sort -u | tee bigCrawl
 }
 
 # Main function to call other functions
